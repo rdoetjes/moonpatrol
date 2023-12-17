@@ -15,6 +15,7 @@ void setup_player(Player *player, const int lives){
     player->lives = lives;
     player->y = 220;
     player->x = 110;
+    player->isJumping = FALSE;
 }
 
 void bg_b(void){
