@@ -1,3 +1,4 @@
+#pragma once
 #include <genesis.h>
 
 typedef struct Player{
