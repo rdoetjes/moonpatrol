@@ -969,8 +969,8 @@
 000086c4 t font_default_data
 00008926 t sgdk_logo_data
 00008d60 t background_tilemap_data
-0000969a t background_tileset_data
-0000c4a0 A _stext
+00009696 t background_tileset_data
+0000c598 A _stext
 e0ff0000 d randbase
 e0ff0004 d idx
 e0ff0008 D task_sr
