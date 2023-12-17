@@ -1,6 +1,8 @@
 #pragma once
 #include <genesis.h>
 
+#define CHAR_WIDTH 40
+
 typedef struct Player{
     u8 lives;
     u16 x;
