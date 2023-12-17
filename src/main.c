@@ -6,11 +6,19 @@ static s16 scroll_bg_b_offset = 0;
 static Player p1;
 static u8 frame_count;
 
+/*
+Sets up the game's background, sprites, player and other required initializations.
+*/
 void setup(void){
     bg_b();
     setup_player(&p1, 3);
 }
 
+/*
+sets up the player pointed to by *player
+The number of lives is externally configurable, as that might depend on hard or easy game.
+The rest of the Player struct is set with fixed values that work for the game.
+*/
 void setup_player(Player *player, const int lives){
     player->lives = lives;
     player->y = 220;
@@ -18,6 +26,10 @@ void setup_player(Player *player, const int lives){
     player->isJumping = FALSE;
 }
 
+/*
+Read the background BG_B (which is a static image and not a tileset)
+and sets up the scrolling mode for it.
+*/
 void bg_b(void){
     u16 idx = TILE_USER_INDEX;
     PAL_setPalette(PAL0, background.palette->data, DMA);
@@ -26,6 +38,9 @@ void bg_b(void){
     VDP_setScrollingMode(HSCROLL_PLANE, VSCROLL_PLANE);
 }
 
+/*
+Draw everything
+*/
 void draw(){
     char lives[12];
     VDP_setHorizontalScroll(BG_B, scroll_bg_b_offset);
@@ -33,6 +48,9 @@ void draw(){
     VDP_drawText(lives, 40-strlen(lives)-2, 1);
 }
 
+/*
+Process game logic
+*/
 void logic(){
     frame_count++; 
     if ( (frame_count & 3) == 0) {
@@ -40,6 +58,9 @@ void logic(){
     }
 }
 
+/*
+MAIN entry point of game
+*/
 int main()
 {   
     setup();
