@@ -34,6 +34,7 @@ static void logic(){
     if ( (frame_count & 3) == 0) {
         scroll_bg_b_offset--;
     }
+    if (frame_count == 0) p1.lives--;
 }
 
 /*
@@ -61,12 +62,17 @@ static void bg_b(void){
 }
 
 static void gameover_screen(void){
-    /*
+    //hide the lives: x text by writing spaces, as that's still in the buffer.
+    char lives[12];
+    sprintf(lives, "            ");
+    VDP_drawText(lives, CHAR_WIDTH-strlen(lives)-2, 1); // draw text 2 chars from the end of the screen
+
+    //load and display the gameover screen, this is a BG_B image
     u16 idx = TILE_USER_INDEX;
-    PAL_setPalette(PAL0, gameover_screen.palette->data, DMA);
-    VDP_drawImageEx(BG_B, &gameover_screen, TILE_ATTR_FULL(PAL0, FALSE, FALSE, FALSE, idx), 0, -3, FALSE, TRUE);
-    idx += gameover_screen.tileset->numTile;
-    */
+    VDP_setHorizontalScroll(BG_B, 0);
+    PAL_setPalette(PAL0, gameover_bg.palette->data, DMA);
+    VDP_drawImageEx(BG_B, &gameover_bg, TILE_ATTR_FULL(PAL0, FALSE, FALSE, FALSE, idx), 0, 0, FALSE, TRUE);
+    idx += gameover_bg.tileset->numTile;
 }
 
 /*
