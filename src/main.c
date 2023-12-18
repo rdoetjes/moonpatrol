@@ -10,7 +10,6 @@ static u8 frame_count;
 Sets up the game's background, sprites, player and other required initializations.
 */
 static void setup(void){
-    char lives[12];
     bg_b();
     setup_player(&p1, 3);
 }
