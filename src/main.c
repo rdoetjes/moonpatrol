@@ -50,7 +50,8 @@ static void setup_player(Player *player, const u8 lives){
 }
 
 /*
-load_vdp avoids expensive code duplication; Now we call a single function to load a vdp image and set the palette, instead
+load_vdp is a convenience wrapper that avoids expensive code duplication; 
+Now we call a single function to load a vdp image and set the palette, instead
 of doing those lines for every screen we want to load.
 */
 static void load_vdp(u16 numPal, const u16* pal, int x, int y, VDPPlane plane, const Image *image){
