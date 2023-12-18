@@ -39,7 +39,7 @@ sets up the player pointed to by *player
 The number of lives is externally configurable, as that might depend on hard or easy game.
 The rest of the Player struct is set with fixed values that work for the game.
 */
-void setup_player(Player *player, const u8 lives){
+static void setup_player(Player *player, const u8 lives){
     player->lives = lives;
     player->y = 220;
     player->x = 110;
@@ -50,7 +50,7 @@ void setup_player(Player *player, const u8 lives){
 Read the background BG_B (which is a static image and not a tileset)
 and sets up the scrolling mode for it.
 */
-void bg_b(void){
+static void bg_b(void){
     u16 idx = TILE_USER_INDEX;
     PAL_setPalette(PAL0, background.palette->data, DMA);
     VDP_drawImageEx(BG_B, &background, TILE_ATTR_FULL(PAL0, FALSE, FALSE, FALSE, idx), 0, -3, FALSE, TRUE);
