@@ -2,7 +2,7 @@
 #include <resources.h>
 #include <string.h>
 
-static s16 scroll_bg_b_offset = 0;
+static s16 scroll_bg_b_offset;
 static Player p1;
 static u8 frame_count;
 
@@ -12,6 +12,8 @@ Sets up the game's background, sprites, player and other required initialization
 static void setup(void){
     bg_b();
     setup_player(&p1, 3);
+    scroll_bg_b_offset = 0;
+    JOY_init();
 }
 
 /*
@@ -58,17 +60,37 @@ static void bg_b(void){
     VDP_setScrollingMode(HSCROLL_PLANE, VSCROLL_PLANE);
 }
 
+static void gameover_screen(void){
+    /*
+    u16 idx = TILE_USER_INDEX;
+    PAL_setPalette(PAL0, gameover_screen.palette->data, DMA);
+    VDP_drawImageEx(BG_B, &gameover_screen, TILE_ATTR_FULL(PAL0, FALSE, FALSE, FALSE, idx), 0, -3, FALSE, TRUE);
+    idx += gameover_screen.tileset->numTile;
+    */
+}
+
 /*
 MAIN entry point of game
 */
 int main()
 {   
-    setup();
     while(1)
     {
-        logic();
-        draw();
+        setup();
+        //standard game loop when game is playing and player is still alive
+        while(p1.lives > 0){
+            //run game logic
+            logic();
+            //draw all contents to screen
+            draw();
+            //wait for vertical blank
+            SYS_doVBlankProcess();
+        } 
+
+        // when player dies we show game over screen and wait for start button.
+        gameover_screen();
         SYS_doVBlankProcess();
+        JOY_waitPress(JOY_1, BUTTON_START);
     }
     return (0);
 }

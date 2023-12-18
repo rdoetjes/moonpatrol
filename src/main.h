@@ -15,3 +15,4 @@ static void bg_b(void);
 static void draw();
 static void logic(void);
 static void setup_player(Player *player, const u8 lives);
+static void gameover_screen();
