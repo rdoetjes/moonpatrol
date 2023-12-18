@@ -50,14 +50,22 @@ static void setup_player(Player *player, const u8 lives){
 }
 
 /*
+load_vdp avoids expensive code duplication; Now we call a single function to load a vdp image and set the palette, instead
+of doing those lines for every screen we want to load.
+*/
+static void load_vdp(u16 numPal, const u16* pal, int x, int y, VDPPlane plane, const Image *image){
+    u16 idx = TILE_USER_INDEX;
+    PAL_setPalette(PAL0, image->palette->data, DMA);
+    VDP_drawImageEx(BG_B, image, TILE_ATTR_FULL(PAL0, FALSE, FALSE, FALSE, idx), x, y, FALSE, TRUE);
+    idx += image->tileset->numTile;
+}
+
+/*
 Read the game_bg_b BG_B (which is a static image and not a tileset)
 and sets up the scrolling mode for it.
 */
 static void show_game_bg_b(void){
-    u16 idx = TILE_USER_INDEX;
-    PAL_setPalette(PAL0, game_bg_b.palette->data, DMA);
-    VDP_drawImageEx(BG_B, &game_bg_b, TILE_ATTR_FULL(PAL0, FALSE, FALSE, FALSE, idx), 0, -3, FALSE, TRUE);
-    idx += game_bg_b.tileset->numTile;
+    load_vdp(PAL0, game_bg_b.palette->data, 0, -3, BG_B, &game_bg_b);
     VDP_setScrollingMode(HSCROLL_PLANE, VSCROLL_PLANE);
 }
 
@@ -68,11 +76,8 @@ static void show_gameover_bg_b(void){
     VDP_drawText(lives, CHAR_WIDTH-strlen(lives)-2, 1); // draw text 2 chars from the end of the screen
 
     //load and display the gameover screen, this is a BG_B image
-    u16 idx = TILE_USER_INDEX;
     VDP_setHorizontalScroll(BG_B, 0);   //be sure to set scroll to 0 because then we update the whole screen
-    PAL_setPalette(PAL0, gameover_bg_b.palette->data, DMA);
-    VDP_drawImageEx(BG_B, &gameover_bg_b, TILE_ATTR_FULL(PAL0, FALSE, FALSE, FALSE, idx), 0, 0, FALSE, TRUE);
-    idx += gameover_bg_b.tileset->numTile;
+    load_vdp(PAL0, gameover_bg_b.palette->data, 0, 0, BG_B, &gameover_bg_b);
 }
 
 /*
