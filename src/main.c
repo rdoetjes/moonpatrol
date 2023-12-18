@@ -9,7 +9,8 @@ static u8 frame_count;
 /*
 Sets up the game's background, sprites, player and other required initializations.
 */
-void setup(void){
+static void setup(void){
+    char lives[12];
     bg_b();
     setup_player(&p1, 3);
 }
@@ -17,7 +18,7 @@ void setup(void){
 /*
 Draw everything
 */
-void draw(){
+static void draw(){
     char lives[12];
     VDP_setHorizontalScroll(BG_B, scroll_bg_b_offset);
     sprintf(lives, "LIVES: %d", p1.lives);
@@ -27,7 +28,7 @@ void draw(){
 /*
 Process game logic
 */
-void logic(){
+static void logic(){
     frame_count++; 
     if ( (frame_count & 3) == 0) {
         scroll_bg_b_offset--;
@@ -39,7 +40,7 @@ sets up the player pointed to by *player
 The number of lives is externally configurable, as that might depend on hard or easy game.
 The rest of the Player struct is set with fixed values that work for the game.
 */
-void setup_player(Player *player, const int lives){
+void setup_player(Player *player, const u8 lives){
     player->lives = lives;
     player->y = 220;
     player->x = 110;
