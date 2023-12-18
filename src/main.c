@@ -7,10 +7,10 @@ static Player p1;
 static u8 frame_count;
 
 /*
-Sets up the game's background, sprites, player and other required initializations.
+Sets up the game's game_bg_b, sprites, player and other required initializations.
 */
 static void setup(void){
-    bg_b();
+    show_game_bg_b();
     setup_player(&p1, 3);
     scroll_bg_b_offset = 0;
     JOY_init();
@@ -50,18 +50,18 @@ static void setup_player(Player *player, const u8 lives){
 }
 
 /*
-Read the background BG_B (which is a static image and not a tileset)
+Read the game_bg_b BG_B (which is a static image and not a tileset)
 and sets up the scrolling mode for it.
 */
-static void bg_b(void){
+static void show_game_bg_b(void){
     u16 idx = TILE_USER_INDEX;
-    PAL_setPalette(PAL0, background.palette->data, DMA);
-    VDP_drawImageEx(BG_B, &background, TILE_ATTR_FULL(PAL0, FALSE, FALSE, FALSE, idx), 0, -3, FALSE, TRUE);
-    idx += background.tileset->numTile;
+    PAL_setPalette(PAL0, game_bg_b.palette->data, DMA);
+    VDP_drawImageEx(BG_B, &game_bg_b, TILE_ATTR_FULL(PAL0, FALSE, FALSE, FALSE, idx), 0, -3, FALSE, TRUE);
+    idx += game_bg_b.tileset->numTile;
     VDP_setScrollingMode(HSCROLL_PLANE, VSCROLL_PLANE);
 }
 
-static void gameover_screen(void){
+static void show_gameover_bg_b(void){
     //hide the lives: x text by writing spaces, as that's still in the buffer.
     char lives[12];
     sprintf(lives, "            ");
@@ -70,9 +70,9 @@ static void gameover_screen(void){
     //load and display the gameover screen, this is a BG_B image
     u16 idx = TILE_USER_INDEX;
     VDP_setHorizontalScroll(BG_B, 0);
-    PAL_setPalette(PAL0, gameover_bg.palette->data, DMA);
-    VDP_drawImageEx(BG_B, &gameover_bg, TILE_ATTR_FULL(PAL0, FALSE, FALSE, FALSE, idx), 0, 0, FALSE, TRUE);
-    idx += gameover_bg.tileset->numTile;
+    PAL_setPalette(PAL0, gameover_bg_b.palette->data, DMA);
+    VDP_drawImageEx(BG_B, &gameover_bg_b, TILE_ATTR_FULL(PAL0, FALSE, FALSE, FALSE, idx), 0, 0, FALSE, TRUE);
+    idx += gameover_bg_b.tileset->numTile;
 }
 
 /*
@@ -94,7 +94,7 @@ int main()
         } 
 
         // when player dies we show game over screen and wait for start button.
-        gameover_screen();
+        show_gameover_bg_b();
         SYS_doVBlankProcess();
         JOY_waitPress(JOY_1, BUTTON_START);
     }

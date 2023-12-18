@@ -11,8 +11,8 @@ typedef struct Player{
 } Player;
 
 static void setup(void);
-static void bg_b(void);
+static void show_game_bg_b(void);
+static void show_gameover_bg_b();
 static void draw();
 static void logic(void);
 static void setup_player(Player *player, const u8 lives);
-static void gameover_screen();
