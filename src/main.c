@@ -69,7 +69,7 @@ static void show_gameover_bg_b(void){
 
     //load and display the gameover screen, this is a BG_B image
     u16 idx = TILE_USER_INDEX;
-    VDP_setHorizontalScroll(BG_B, 0);
+    VDP_setHorizontalScroll(BG_B, 0);   //be sure to set scroll to 0 because then we update the whole screen
     PAL_setPalette(PAL0, gameover_bg_b.palette->data, DMA);
     VDP_drawImageEx(BG_B, &gameover_bg_b, TILE_ATTR_FULL(PAL0, FALSE, FALSE, FALSE, idx), 0, 0, FALSE, TRUE);
     idx += gameover_bg_b.tileset->numTile;
