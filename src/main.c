@@ -70,6 +70,9 @@ static void show_game_bg_b(void){
     VDP_setScrollingMode(HSCROLL_PLANE, VSCROLL_PLANE);
 }
 
+/*
+Loads the game over screen and displayts it on BG_B plane
+*/
 static void show_gameover_bg_b(void){
     //hide the lives: x text by writing spaces, as that's still in the buffer.
     char lives[12];
