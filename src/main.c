@@ -50,11 +50,11 @@ static void setup_player(Player *player, const u8 lives){
 }
 
 /*
-load_vdp is a convenience wrapper that avoids expensive code duplication; 
+load_vdp is a convenience wrapper that avoids expensive code duplication but is inlined for speed (rather a bigger rom than losing cycles)
 Now we call a single function to load a vdp image and set the palette, instead
 of doing those lines for every screen we want to load.
 */
-static void load_vdp(u16 numPal, const u16* pal, int x, int y, VDPPlane plane, const Image *image){
+inline static void load_vdp(u16 numPal, const u16* pal, int x, int y, VDPPlane plane, const Image *image){
     u16 idx = TILE_USER_INDEX;
     PAL_setPalette(PAL0, image->palette->data, DMA);
     VDP_drawImageEx(BG_B, image, TILE_ATTR_FULL(PAL0, FALSE, FALSE, FALSE, idx), x, y, FALSE, TRUE);
