@@ -982,10 +982,10 @@
 00009718 t font_default_data
 0000997a t sgdk_logo_data
 00009db4 t game_bg_b_tilemap_data
-0000a6ea t gameover_bg_b_tilemap_data
-0000a82c t game_bg_b_tileset_data
-0000d72e t gameover_bg_b_tileset_data
-0000e1d2 A _stext
+0000a3e2 t gameover_bg_b_tilemap_data
+0000a520 t game_bg_b_tileset_data
+0000c420 t gameover_bg_b_tileset_data
+0000cec2 A _stext
 e0ff0000 d randbase
 e0ff0004 D task_sr
 e0ff0006 D task_pc
