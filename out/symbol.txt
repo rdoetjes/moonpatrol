@@ -482,10 +482,10 @@
 00009e98 t font_default_data
 0000a0fa t sgdk_logo_data
 0000a534 t game_bg_b_tilemap_data
-0000ab62 t gameover_bg_b_tilemap_data
-0000aca0 t game_bg_b_tileset_data
-0000cba0 t gameover_bg_b_tileset_data
-0000d642 A _stext
+0000ab5c t gameover_bg_b_tilemap_data
+0000ac9a t game_bg_b_tileset_data
+0000cb58 t gameover_bg_b_tileset_data
+0000d5fa A _stext
 e0ff0000 d randbase
 e0ff0004 D task_sr
 e0ff0006 D task_pc
