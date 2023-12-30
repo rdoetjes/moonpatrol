@@ -509,8 +509,8 @@ e0ff006e b timer
 e0ff00ae b lastAllocatedVDPSprite
 e0ff00b2 b usedVDPSprite
 e0ff00b4 b lastSprite
-e0ff00b8 b scroll_bg_b_offset
-e0ff00ba b frame_count
+e0ff00b8 b frame_count
+e0ff00ba b scroll_bg_b_offset
 e0ff00bc b p1
 e0ff00c4 b phase
 e0ff00c8 b gport
