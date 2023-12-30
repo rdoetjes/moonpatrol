@@ -27,7 +27,7 @@ After we have the image on the ROM and defined it we can set it up for scrolling
 </pre>
 And then we can actually move it on both the Y and X axis. In our tutorial we only scroll to the left so we subtract from the current position.
 <pre>
- s16 i = 0;
+    16 i = 0;
     u16 frame_count;
     while(1)
     {
