@@ -3,3 +3,4 @@
 all:
 	docker run --rm -v /home/rdoetjes/develop/moonpatrol:/m68k -t registry.gitlab.com/doragasu/docker-sgdk:v1.80
 	/usr/games/blastem out/rom.bin
+
