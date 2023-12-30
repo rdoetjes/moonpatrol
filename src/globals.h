@@ -1,5 +1,7 @@
 #pragma once
+#include <genesis.h>
 #include "player.h"
+
 #define CHAR_WIDTH 40
 
 Player p1;
