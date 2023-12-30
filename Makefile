@@ -3,6 +3,6 @@
 PWD = $(shell pwd)
 
 all:
-	sudo docker run --rm -v $(PWD):/src sgdk
+	docker run --rm -v $(PWD):/src sgdk
 	/usr/games/blastem out/rom.bin
 
