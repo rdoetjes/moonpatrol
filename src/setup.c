@@ -1,4 +1,5 @@
 #include "setup.h"
+#include "globals.h"
 #include "backgrounds.h"
 #include "player.h"
 /*
@@ -9,6 +10,6 @@ void setup(Player* p1){
 
     show_game_bg_b();
     scroll_bg_b_offset = 0;
-    
+
     JOY_init();
 }

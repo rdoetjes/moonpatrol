@@ -415,7 +415,7 @@
 00008174 T memcpy
 00008184 T memset
 0000819c T MEM_alloc
-00008268 T VDP_setTileMapDataRectEx.constprop.40
+00008268 T VDP_setTileMapDataRectEx.constprop.41
 00008658 T DMA_initEx.constprop.27
 00008746 T showBusAddressErrorDump.constprop.19
 00008808 T showExceptionDump.constprop.12
@@ -433,7 +433,7 @@
 00009294 T SYS_doVBlankProcessEx.constprop.58
 00009628 t doFadeStepInternal.constprop.59
 00009728 T VDP_setReg.constprop.51
-00009742 T setTileMapDataColumnEx.constprop.41
+00009742 T setTileMapDataColumnEx.constprop.42
 00009880 T __mulsi3
 000098a4 T __udivsi3
 000098cc t L3
