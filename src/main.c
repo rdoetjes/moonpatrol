@@ -5,9 +5,9 @@ u16 idx = TILE_USER_INDEX;
 
 int main()
 {   
-    PAL_setPalette(PAL0, background.palette->data, DMA);
-    VDP_drawImageEx(BG_B, &background, TILE_ATTR_FULL(PAL0, FALSE, FALSE, FALSE, idx), 0, -3, FALSE, TRUE);
-    idx += background.tileset->numTile;
+    PAL_setPalette(PAL0, game_bg_b.palette->data, DMA);
+    VDP_drawImageEx(BG_B, &game_bg_b, TILE_ATTR_FULL(PAL0, FALSE, FALSE, FALSE, idx), 0, -3, FALSE, TRUE);
+    idx += game_bg_b.tileset->numTile;
     VDP_setScrollingMode(HSCROLL_PLANE, VSCROLL_PLANE);
 
     s16 i = 0;
