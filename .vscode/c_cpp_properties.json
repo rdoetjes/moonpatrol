@@ -3,9 +3,9 @@
         {
             "name": "Linux",
             "includePath": [
-                "${workspaceFolder}/**",                
-                    "/opt/SGDK/inc/",
-                    "/opt/SGDK/res/"                
+                "${workspaceFolder}/**",
+                "/opt/SGDK/inc",
+                "/opt/SGDK/res"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",
