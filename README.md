@@ -9,4 +9,4 @@ We will be drawing a background and letting that scroll. In order to draw a back
 It's important to know that a Genesis can only handle 16 different color for each background and sprite(s). With palette swapping more colors can be shown on the screen though but that's beyond the basics of this lesson.
 
 A background image when shown in "high res" needs to be 512x256 in order to allow for seamless scrolling.
-![alt text](https://github.com/rdoetjes/moonpatrol/blob/main/res/bg_b_v2.png?raw=true)
+![The 512x256 nackground image](https://github.com/rdoetjes/moonpatrol/blob/main/res/bg_1_v2.png)
