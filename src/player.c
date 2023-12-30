@@ -10,4 +10,5 @@ void setup_player(Player *player, const u8 lives){
     player->y = 220;
     player->x = 110;
     player->isJumping = FALSE;
+    player->score = 0;
 }
