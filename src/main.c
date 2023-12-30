@@ -1,14 +1,12 @@
 #include "main.h"
+#include "setup.h"
 #include "globals.h"
 #include "player.h"
 #include "backgrounds.h"
+#include "logic.h"
 
 #include <resources.h>
 #include <string.h>
-
-
-static Player p1;
-static u8 frame_count;
 
 /*
 Draw everything
@@ -18,17 +16,6 @@ static void draw(){
     VDP_setHorizontalScroll(BG_B, scroll_bg_b_offset);
     sprintf(lives, "LIVES: %d", p1.lives);
     VDP_drawText(lives, CHAR_WIDTH-strlen(lives)-2, 1); // draw text 2 chars from the end of the screen
-}
-
-/*
-Process game logic
-*/
-static void logic(){
-    frame_count++; 
-    if ( (frame_count & 3) == 0) {
-        scroll_bg_b_offset--;
-    }
-    if (frame_count == 0) p1.lives--;
 }
 
 /*
