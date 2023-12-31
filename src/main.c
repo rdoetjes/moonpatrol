@@ -16,6 +16,7 @@ static void draw(){
     VDP_setHorizontalScroll(BG_B, scroll_bg_b_offset);
     sprintf(lives, "LIVES: %d", p1.lives);
     VDP_drawText(lives, CHAR_WIDTH-strlen(lives)-2, 1); // draw text 2 chars from the end of the screen
+    SPR_update();
 }
 
 /*
@@ -37,6 +38,7 @@ int main()
         } 
 
         // when player dies we show game over screen and wait for start button.
+        SPR_clear();
         show_gameover_bg_b();
         SYS_doVBlankProcess();
         JOY_waitPress(JOY_1, BUTTON_START);

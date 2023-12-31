@@ -7,3 +7,4 @@
 Player p1;
 u8 frame_count;
 s16 scroll_bg_b_offset;
+Sprite* p1_sprite;

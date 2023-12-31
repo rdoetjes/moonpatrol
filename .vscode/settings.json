@@ -2,5 +2,6 @@
     "files.associations": {
         "backgrounds.h": "c",
         "resources.h": "c"
-    }
+    },
+    "C_Cpp.errorSquiggles": "disabled"
 }
