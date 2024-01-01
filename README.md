@@ -161,8 +161,14 @@ We do prefer not to check all the if statemens in jump_animation_handling() when
 void logic(){
     process_joy();
     
+    //only process jump animation when we are not on the ground
     if (p1.jump_state != GROUND){
         jump_animation_handling();
-    }     
+    }   
+
+    // move the player based on the p1 structure
+    move_player(&p1);
+    
+...  
 }
 ```

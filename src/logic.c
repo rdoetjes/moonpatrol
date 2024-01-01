@@ -41,9 +41,6 @@ static void jump_animation_handling(void){
         p1.jump_state = GROUND;
         p1.jumpFrame = 0;  
     }
-
-    // move the player based on the p1 structure
-    move_player(&p1);
 }
 
 static u16 process_joy(){
@@ -69,12 +66,16 @@ static u16 process_joy(){
 Process game logic
 */
 void logic(){
-    process_joy();
+     process_joy();
     
+    //only process jump animation when we are not on the ground
     if (p1.jump_state != GROUND){
         jump_animation_handling();
     }   
 
+    // move the player based on the p1 structure
+    move_player(&p1);
+    
     frame_count++; 
     if ( (frame_count & 3) == 0) {
         scroll_bg_b_offset--;
