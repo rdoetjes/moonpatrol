@@ -15,5 +15,4 @@ void setup(Player* p1){
     scroll_bg_b_offset = 0;    
 
     setup_player(p1, 3);   // setup player 1 with 3 lives (currently we only have a player 1)
-
 }
