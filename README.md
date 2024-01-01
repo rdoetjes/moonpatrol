@@ -83,11 +83,6 @@ static u16 process_joy(){
 
 When the button left is pressed we subtract two pixel postions from the player's x position. When the button to the right is pressed we add 2 pixels to the x position of the player. 
 
-The draw Sprites are updated in the draw() functions with the SPR_update().
-```C
-    SPR_update();
-```
-
 The player sprite location is updated as follows:
 ```C
 void move_player(Player *player){
@@ -171,4 +166,10 @@ void logic(){
     
 ...  
 }
+```
+
+Eventually the sprites are rendered to the screen in the draw() function using the SPR_update()
+
+```C
+    SPR_update();
 ```
