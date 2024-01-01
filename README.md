@@ -36,3 +36,12 @@ And then we can actually move it on both the Y and X axis. In our tutorial we on
         SYS_doVBlankProcess();
     }    
 </pre>
+
+## Tutorial 2
+Splitting up your code in files makes it easier to maintain. Especially when you use global variables to allow for faster function calls as the whole stack frame doesn't need to be setup.
+
+
+## Tutorial 3
+We created a sprite sheet for the player one. We used Asprite to create the frames of the different animations. Those frames were tagged, so that when we exported the Sprite Sheet, we could seperate the frames based on tags.
+A fully exported sprite sheet looks like this:
+![Player Sprite sheet](https://github.com/rdoetjes/moonpatrol/blob/main/res/car_step1_animated.png)
