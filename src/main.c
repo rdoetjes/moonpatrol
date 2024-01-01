@@ -20,6 +20,15 @@ static void draw(){
     SPR_update();
 }
 
+
+static void gameover(){
+   // when player dies we show game over screen and wait for start button.
+    SPR_clear();
+    show_gameover_bg_b();
+    SYS_doVBlankProcess();
+    JOY_waitPress(JOY_1, BUTTON_START);
+}
+
 /*
 MAIN entry point of game
 */
@@ -37,12 +46,8 @@ int main()
             //wait for vertical blank
             SYS_doVBlankProcess();
         } 
-
-        // when player dies we show game over screen and wait for start button.
-        SPR_clear();
-        show_gameover_bg_b();
-        SYS_doVBlankProcess();
-        JOY_waitPress(JOY_1, BUTTON_START);
+        // game over screen and wait for start button
+        gameover();
     }
     return (0);
 } 
