@@ -22,3 +22,7 @@ void setup_player(Player *player, const u8 lives){
     load_sprite(player);
     SPR_setAnim(p1_sprite, 0);
 }
+
+void move_player(Player *player){
+    SPR_setPosition(p1_sprite, player->x, player->y);
+}

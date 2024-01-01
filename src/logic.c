@@ -1,9 +1,26 @@
 #include "logic.h"
 #include "globals.h"
+
+u16 process_joy(){
+    u16 input = JOY_readJoypad(JOY_1);
+
+    if(input & BUTTON_LEFT) {
+        if (p1.x > 0) p1.x-=2;              
+    }
+
+    if(input & BUTTON_RIGHT) {
+        if (p1.x < 320 - 64) p1.x+=2;        
+    }
+
+    return input;
+}
+
 /*
 Process game logic
 */
 void logic(){
+    process_joy();
+
     frame_count++; 
     if ( (frame_count & 3) == 0) {
         scroll_bg_b_offset--;

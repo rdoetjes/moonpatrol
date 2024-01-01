@@ -10,3 +10,4 @@ typedef struct Player{
 } Player;
 
 void setup_player(Player *player, const u8 lives);
+void move_player(Player* player);
