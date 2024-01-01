@@ -18,6 +18,13 @@ static void draw(){
     VDP_drawText(lives, CHAR_WIDTH-strlen(lives)-2, 1); // draw text 2 chars from the end of the screen
 }
 
+static void gameover(){
+    // when player dies we show game over screen and wait for start button.
+    show_gameover_bg_b();
+    SYS_doVBlankProcess();
+    JOY_waitPress(JOY_1, BUTTON_START);
+}
+
 /*
 MAIN entry point of game
 */
@@ -35,11 +42,8 @@ int main()
             //wait for vertical blank
             SYS_doVBlankProcess();
         } 
-
-        // when player dies we show game over screen and wait for start button.
-        show_gameover_bg_b();
-        SYS_doVBlankProcess();
-        JOY_waitPress(JOY_1, BUTTON_START);
+        //game over screen and wait for start
+        gameover();
     }
     return (0);
 } 
