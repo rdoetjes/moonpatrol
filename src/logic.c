@@ -1,7 +1,7 @@
 #include "logic.h"
 #include "globals.h"
 
-u16 process_joy(){
+static u16 process_joy(){
     u16 input = JOY_readJoypad(JOY_1);
 
     if(input & BUTTON_LEFT && p1.x > LEFT_BOUNDERY_PLAYER){
