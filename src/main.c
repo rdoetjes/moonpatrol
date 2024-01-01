@@ -20,7 +20,6 @@ static void draw(){
     SPR_update();
 }
 
-
 static void gameover(){
    // when player dies we show game over screen and wait for start button.
     SPR_clear();
