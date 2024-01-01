@@ -63,8 +63,9 @@ Currently we read the joystick in the logic.c as the first step. Later on, if it
 ```C
 static u16 process_joy(){
     u16 input = JOY_readJoypad(JOY_1);
+    
     //move player left
-    if(input & BUTTON_LEFT && p1.x > LEFT_BOUNDERY_PLAYER){
+    if(input & BUTTON_LEFT && p1.x > LEFT_BOUNDERY_PLAYER) {
         p1.x-=2;              
     }
     //move player right
@@ -72,8 +73,7 @@ static u16 process_joy(){
         p1.x+=2;        
     }
     //move player make the player jump when he's not already jumping
-    if (input & BUTTON_B && p1.jump_state == GROUND){
-        SPR_setAnim(p1_sprite, 1);
+    if (input & BUTTON_B && p1.jump_state == GROUND) {
         p1.jump_state = UP;                
     }    
 
@@ -113,30 +113,32 @@ static void jump_animation_handling(void){
         p1.jumpFrame++;
     }
 
+    // player is jumping move sprite up and set the animation to UP state
     if (p1.jump_state == UP){
+        SPR_setAnim(p1_sprite, UP);
         p1.y--;
     }
 
     //transistion from jump up to hang air animation
     if (p1.jump_state == UP && p1.jumpFrame > JUMP_UP_NR_FAMES){        
         p1.jump_state = HANG;
-        SPR_setAnim(p1_sprite, 2);        
+        SPR_setAnim(p1_sprite, HANG);        
     }
 
     //transistion from hang air to going down animation
     if (p1.jump_state == HANG && p1.jumpFrame > JUMP_HANG_NR_FAMES){
         p1.jump_state = DOWN;                
-        SPR_setAnim(p1_sprite, 3);        
     }
 
     if (p1.jump_state == DOWN){
+        SPR_setAnim(p1_sprite, DOWN);        
         p1.y++;
     }
 
     //transition from down to ground animation
     if (p1.jump_state == DOWN && p1.jumpFrame > JUMP_DOWN_NR_FAMES){
         p1.jump_state = WAIT;      
-        SPR_setAnim(p1_sprite, 0);        
+        SPR_setAnim(p1_sprite, GROUND);        
     }
 
     //wait 50 frames before next posisble jump
@@ -149,3 +151,5 @@ static void jump_animation_handling(void){
 
 The p1.jumpFrame is a frame counter that we use to determine the transition from one jump state to the next.
 These frame durations are configured in the globals.h, this allows us to tweak the duration of a jump and the indivual states of the jump.
+
+The animation for each state is set using the SPR_setAnim() function.
