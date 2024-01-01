@@ -52,4 +52,3 @@ SGDK will parse the different frames and stores them in the ROM. In order for SG
 SPRITE player_sprite "car_step1_animated.png" 8 4 FAST 5
 </pre>
 In this case the meta sprite is 8 tiles wide and 4 tiles tall. We will change the frames every 5*(1/60)
-### Managing the state of a jump
