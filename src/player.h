@@ -15,7 +15,7 @@ typedef struct Player{
     u16 y;
     u32 score;
     Jump_state jump_state;
-    u16 jumpFrame;
+    u8 jumpFrame;
 } Player;
 
 void setup_player(Player *player, const u8 lives);
