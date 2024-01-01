@@ -44,4 +44,12 @@ Splitting up your code in files makes it easier to maintain. Especially when you
 ## Tutorial 3
 We created a sprite sheet for the player one. We used Asprite to create the frames of the different animations. Those frames were tagged, so that when we exported the Sprite Sheet, we could seperate the frames based on tags.
 A fully exported sprite sheet looks like this:
+<p>
 ![Player Sprite sheet](https://github.com/rdoetjes/moonpatrol/blob/main/res/car_step1_animated.png)
+<p>
+SGDK will parse the different frames and stores them in the ROM. In order for SGDK to be able to do that, we need to tell it out of how many tiles this sprite is made up.
+<pre>
+SPRITE player_sprite "car_step1_animated.png" 8 4 FAST 5
+</pre>
+In this case the meta sprite is 8 tiles wide and 4 tiles tall. We will change the frames every 5*(1/60)
+### Managing the state of a jump
