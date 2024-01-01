@@ -1,12 +1,21 @@
 #pragma once
 #include <genesis.h>
 
+typedef enum Jump_state {
+    GROUND,
+    UP,
+    HANG,
+    DOWN,
+    WAIT
+} Jump_state;
+
 typedef struct Player{
     u8 lives;
     u16 x;
     u16 y;
     u32 score;
-    bool isJumping;
+    Jump_state jump_state;
+    u16 jumpFrame;
 } Player;
 
 void setup_player(Player *player, const u8 lives);

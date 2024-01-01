@@ -16,7 +16,8 @@ void setup_player(Player *player, const u8 lives){
     player->lives = lives;    
     player->x = 90;
     player->y = 180;
-    player->isJumping = FALSE;
+    player->jump_state = GROUND;
+    player->jumpFrame = 0;
     player->score = 0;
 
     load_sprite(player);
