@@ -21,8 +21,8 @@ extern const Image game_bg_b;
 After we have the image on the ROM and defined it we can set it up for scrolling:
 ```C
     PAL_setPalette(PAL0, game_bg_b.palette->data, DMA);
+    idx = game_bg_b.tileset->numTile;
     VDP_drawImageEx(BG_B, &game_bg_b, TILE_ATTR_FULL(PAL0, FALSE, FALSE, FALSE, idx), 0, -3, FALSE, TRUE);
-    idx += game_bg_b.tileset->numTile;
     VDP_setScrollingMode(HSCROLL_PLANE, VSCROLL_PLANE);
 ```
 
