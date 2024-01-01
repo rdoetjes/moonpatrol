@@ -43,15 +43,16 @@ static void jump_animation_handling(void){
 
 static u16 process_joy(){
     u16 input = JOY_readJoypad(JOY_1);
-
+    
+    //move player left
     if(input & BUTTON_LEFT && p1.x > LEFT_BOUNDERY_PLAYER){
         p1.x-=2;              
     }
-
+    //move player right
     if(input & BUTTON_RIGHT && p1.x < RIGHT_BOUNDERY_PLAYER) {
         p1.x+=2;        
     }
-
+    //move player make the player jump when he's not already jumping
     if (input & BUTTON_B && p1.jump_state == GROUND){
         SPR_setAnim(p1_sprite, 1);
         p1.jump_state = UP;                

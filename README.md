@@ -63,15 +63,15 @@ Currently we read the joystick in the logic.c as the first step. Later on, if it
 ```C
 static u16 process_joy(){
     u16 input = JOY_readJoypad(JOY_1);
-
+    //move player left
     if(input & BUTTON_LEFT && p1.x > LEFT_BOUNDERY_PLAYER){
         p1.x-=2;              
     }
-
+    //move player right
     if(input & BUTTON_RIGHT && p1.x < RIGHT_BOUNDERY_PLAYER) {
         p1.x+=2;        
     }
-
+    //move player make the player jump when he's not already jumping
     if (input & BUTTON_B && p1.jump_state == GROUND){
         SPR_setAnim(p1_sprite, 1);
         p1.jump_state = UP;                
@@ -81,12 +81,27 @@ static u16 process_joy(){
 }
 ```
 
+When the button left is pressed we subtract two pixel postions from the player's x position. When the button to the right is pressed we add 2 pixels to the x position of the player. 
+
+The draw routine we call (it is good practice to redraw all the game elements together in a single function call):
+```C
+    move_player(&p1);
+```
+
+The player sprite location is updated as follows:
+```C
+void move_player(Player *player){
+    SPR_setPosition(p1_sprite, player->x, player->y);
+}
+```
+
 ### Managing the jump state
 As you can see we have 4 states in our sprite sheet, they are all related to the jump. We have the animations for:
 * the car hovering on the ground (GROUND state)
 * the impulse pushing the car up (UP state)
 * the car hanging in the air (HANG state)
 * the car falling back downn to the ground (DOWN state)
+* the wait state, we allow 25 frames before the next jump will/can be triggered (WAIT state)
 
 We manage these states in our logic.c
 
@@ -103,13 +118,13 @@ static void jump_animation_handling(void){
     }
 
     //transistion from jump up to hang air animation
-    if (p1.jump_state == UP && p1.jumpFrame > 10){        
+    if (p1.jump_state == UP && p1.jumpFrame > JUMP_UP_NR_FAMES){        
         p1.jump_state = HANG;
         SPR_setAnim(p1_sprite, 2);        
     }
 
     //transistion from hang air to going down animation
-    if (p1.jump_state == HANG && p1.jumpFrame > 40){
+    if (p1.jump_state == HANG && p1.jumpFrame > JUMP_HANG_NR_FAMES){
         p1.jump_state = DOWN;                
         SPR_setAnim(p1_sprite, 3);        
     }
@@ -119,15 +134,18 @@ static void jump_animation_handling(void){
     }
 
     //transition from down to ground animation
-    if (p1.jump_state == DOWN && p1.jumpFrame > 50){
+    if (p1.jump_state == DOWN && p1.jumpFrame > JUMP_DOWN_NR_FAMES){
         p1.jump_state = WAIT;      
         SPR_setAnim(p1_sprite, 0);        
     }
 
     //wait 50 frames before next posisble jump
-    if (p1.jump_state == WAIT && p1.jumpFrame >= 75){
+    if (p1.jump_state == WAIT && p1.jumpFrame >= JUMP_WAIT_NR_FRAMES){
         p1.jump_state = GROUND;
         p1.jumpFrame = 0;  
     }
 }
 ```
+
+The p1.jumpFrame is a frame counter that we use to determine the transition from one jump state to the next.
+These frame durations are configured in the globals.h, this allows us to tweak the duration of a jump and the indivual states of the jump.
