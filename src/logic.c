@@ -5,11 +5,11 @@ u16 process_joy(){
     u16 input = JOY_readJoypad(JOY_1);
 
     if(input & BUTTON_LEFT) {
-        if (p1.x > 0) p1.x-=2;              
+        if (p1.x > LEFT_BOUNDERY_PLAYER) p1.x-=2;              
     }
 
     if(input & BUTTON_RIGHT) {
-        if (p1.x < 320 - 64) p1.x+=2;        
+        if (p1.x < RIGHT_BOUNDERY_PLAYER) p1.x+=2;        
     }
 
     return input;
