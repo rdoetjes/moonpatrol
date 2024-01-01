@@ -532,8 +532,8 @@
 0000eef8 t player_sprite_animation1_frame2_tileset_data
 0000effa t player_sprite_animation2_frame0_tileset_data
 0000f0fe t player_sprite_animation2_frame1_tileset_data
-0000f202 t player_sprite_animation2_frame2_tileset_data
-0000f312 A _stext
+0000f208 t player_sprite_animation2_frame2_tileset_data
+0000f316 A _stext
 e0ff0000 d randbase
 e0ff0004 D task_sr
 e0ff0006 D task_pc
