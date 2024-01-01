@@ -54,6 +54,7 @@ We created a sprite sheet for the player one. We used Asprite to create the fram
 A fully exported sprite sheet looks like this:
 
 ![Player Sprite sheet](https://github.com/rdoetjes/moonpatrol/blob/main/res/car_step1_animated.png)
+![Player is jumping](https://github.com/rdoetjes/moonpatrol/blob/main/docs_images/jump.png)
 
 SGDK will parse the different frames and stores them in the ROM. In order for SGDK to be able to do that, we need to tell it out of how many tiles this sprite is made up.
 
