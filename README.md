@@ -54,3 +54,54 @@ SGDK will parse the different frames and stores them in the ROM. In order for SG
 SPRITE player_sprite "car_step1_animated.png" 8 4 FAST 5
 </pre>
 In this case the meta sprite is 8 tiles wide and 4 tiles tall. We will change the frames every 5*(1/60)
+
+### Managing the jump state
+As you can see we have 4 states in our sprite sheet, they are all related to the jump. We have the animations for:
+* the car hovering on the ground (GROUND state)
+* the impulse pushing the car up (UP state)
+* the car hanging in the air (HANG state)
+* the car falling back downn to the ground (DOWN state)
+
+We manage these states in our logic.c
+
+```C
+static void jump_animation_handling(void){
+    //tracks the amount of frame we are in the air
+    //animation state is coupled to this.
+    if (p1.jump_state!=GROUND){
+        p1.jumpFrame++;
+    }
+
+    if (p1.jump_state == UP){
+        p1.y--;
+    }
+
+    //transistion from jump up to hang air animation
+    if (p1.jump_state == UP && p1.jumpFrame > 10){        
+        p1.jump_state = HANG;
+        SPR_setAnim(p1_sprite, 2);        
+    }
+
+    //transistion from hang air to going down animation
+    if (p1.jump_state == HANG && p1.jumpFrame > 40){
+        p1.jump_state = DOWN;                
+        SPR_setAnim(p1_sprite, 3);        
+    }
+
+    if (p1.jump_state == DOWN){
+        p1.y++;
+    }
+
+    //transition from down to ground animation
+    if (p1.jump_state == DOWN && p1.jumpFrame > 50){
+        p1.jump_state = WAIT;      
+        SPR_setAnim(p1_sprite, 0);        
+    }
+
+    //wait 50 frames before next posisble jump
+    if (p1.jump_state == WAIT && p1.jumpFrame >= 75){
+        p1.jump_state = GROUND;
+        p1.jumpFrame = 0;  
+    }
+}
+```
