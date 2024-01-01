@@ -5,7 +5,7 @@
             "includePath": [
                 "${workspaceFolder}/**",
                 "/opt/SGDK/inc",
-                "/opt/SGDK/res"
+                "/opt/SGDK/res"                
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",
