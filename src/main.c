@@ -20,6 +20,10 @@ static void draw(){
     SPR_update();
 }
 
+/*
+Remove all the sprites from the screen
+Show gameover screen and wait for start button to restart the game
+*/
 static void gameover(){
    // when player dies we show game over screen and wait for start button.
     SPR_clear();
