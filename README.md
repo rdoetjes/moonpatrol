@@ -19,14 +19,15 @@ extern const Image game_bg_b;
 </pre>
 
 After we have the image on the ROM and defined it we can set it up for scrolling:
-<pre>
+```C
     PAL_setPalette(PAL0, game_bg_b.palette->data, DMA);
     VDP_drawImageEx(BG_B, &game_bg_b, TILE_ATTR_FULL(PAL0, FALSE, FALSE, FALSE, idx), 0, -3, FALSE, TRUE);
     idx += game_bg_b.tileset->numTile;
     VDP_setScrollingMode(HSCROLL_PLANE, VSCROLL_PLANE);
-</pre>
+```
+
 And then we can actually move it on both the Y and X axis. In our tutorial we only scroll to the left so we subtract from the current position.
-<pre>
+```C
     16 i = 0;
     u16 frame_count;
     while(1)
@@ -35,13 +36,19 @@ And then we can actually move it on both the Y and X axis. In our tutorial we on
         VDP_setHorizontalScroll(BG_B, i);
         SYS_doVBlankProcess();
     }    
-</pre>
+```
 
 ## Tutorial 2
 Splitting up your code in files makes it easier to maintain. Especially when you use global variables to allow for faster function calls as the whole stack frame doesn't need to be setup.
 
+* logic.c will manage all the game logic
 
 ## Tutorial 3
+In this totorial we will import a player sprite sheet with different animations.
+We will change the animations depending on frame count, to have a more control over the whole animation.
+Then after the sprite is visible we will move it left and right using the joystick as well as implement the jump wich will play the different animations.
+
+### Player sprite sheet
 We created a sprite sheet for the player one. We used Asprite to create the frames of the different animations. Those frames were tagged, so that when we exported the Sprite Sheet, we could seperate the frames based on tags.
 
 A fully exported sprite sheet looks like this:
@@ -50,10 +57,29 @@ A fully exported sprite sheet looks like this:
 
 SGDK will parse the different frames and stores them in the ROM. In order for SGDK to be able to do that, we need to tell it out of how many tiles this sprite is made up.
 
-<pre>
-SPRITE player_sprite "car_step1_animated.png" 8 4 FAST 5
-</pre>
-In this case the meta sprite is 8 tiles wide and 4 tiles tall. We will change the frames every 5*(1/60)
+### Reading the joy stick
+Currently we read the joystick in the logic.c as the first step. Later on, if it is desired, we can break it out into it's own dedicated file.
+
+```C
+static u16 process_joy(){
+    u16 input = JOY_readJoypad(JOY_1);
+
+    if(input & BUTTON_LEFT && p1.x > LEFT_BOUNDERY_PLAYER){
+        p1.x-=2;              
+    }
+
+    if(input & BUTTON_RIGHT && p1.x < RIGHT_BOUNDERY_PLAYER) {
+        p1.x+=2;        
+    }
+
+    if (input & BUTTON_B && p1.jump_state == GROUND){
+        SPR_setAnim(p1_sprite, 1);
+        p1.jump_state = UP;                
+    }    
+
+    return input;
+}
+```
 
 ### Managing the jump state
 As you can see we have 4 states in our sprite sheet, they are all related to the jump. We have the animations for:
