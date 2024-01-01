@@ -14,9 +14,9 @@ A background image when shown in "high res" needs to be 512x256 in order to allo
 The image is defined in the res/resources.res file, this allows the compiler and the toolchain to cut th epng into tiles and pack them and put them on the ROM image.
 
 Then we can reference it C by adding a line to the resources.h file that is similar to this:
-<pre>
+```c
 extern const Image game_bg_b;
-</pre>
+```
 
 After we have the image on the ROM and defined it we can set it up for scrolling:
 ```C
