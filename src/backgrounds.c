@@ -19,7 +19,7 @@ Read the game_bg_b BG_B (which is a static image and not a tileset)
 and sets up the scrolling mode for it.
 */
 void show_game_bg_b(void){
-    load_vdp(PAL0, game_bg_b.palette->data, 0, -3, BG_B, &game_bg_b);
+    load_vdp(PAL0, game_bg_b.palette->data, 0, 0, BG_B, &game_bg_b);
     VDP_setScrollingMode(HSCROLL_PLANE, VSCROLL_PLANE);
 }
 
