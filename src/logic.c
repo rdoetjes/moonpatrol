@@ -41,6 +41,9 @@ static void jump_animation_handling(void){
         p1.jump_state = GROUND;
         p1.jumpFrame = 0;  
     }
+
+    // move the player based on the p1 structure
+    move_player(&p1);
 }
 
 static u16 process_joy(){

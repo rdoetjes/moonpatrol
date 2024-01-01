@@ -83,9 +83,9 @@ static u16 process_joy(){
 
 When the button left is pressed we subtract two pixel postions from the player's x position. When the button to the right is pressed we add 2 pixels to the x position of the player. 
 
-The draw routine we call (it is good practice to redraw all the game elements together in a single function call):
+The draw Sprites are updated in the draw() functions with the SPR_update().
 ```C
-    move_player(&p1);
+    SPR_update();
 ```
 
 The player sprite location is updated as follows:
@@ -153,3 +153,16 @@ The p1.jumpFrame is a frame counter that we use to determine the transition from
 These frame durations are configured in the globals.h, this allows us to tweak the duration of a jump and the indivual states of the jump.
 
 The animation for each state is set using the SPR_setAnim() function.
+
+### Processing the state
+We do prefer not to check all the if statemens in jump_animation_handling() when the player isn't actually jumping. So we check if the state, that is set by proces_joy(), is not equal to GROUND, only then we will go through the jump logic. This safes cycles.
+
+```c
+void logic(){
+    process_joy();
+    
+    if (p1.jump_state != GROUND){
+        jump_animation_handling();
+    }     
+}
+```

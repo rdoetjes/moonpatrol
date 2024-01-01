@@ -17,7 +17,6 @@ static void draw(){
     sprintf(lives, "LIVES: %d", p1.lives);
     VDP_drawText(lives, CHAR_WIDTH-strlen(lives)-2, 1); // draw text 2 chars from the end of the screen
 
-    move_player(&p1);
     SPR_update();
 }
 
