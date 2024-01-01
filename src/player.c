@@ -3,7 +3,7 @@
 #include "resources.h"
 
 static void load_sprite(void){
-    p1_sprite = SPR_addSprite(&player_sprite, 200, 200, TILE_ATTR(PAL2, FALSE, FALSE, FALSE));
+    p1_sprite = SPR_addSprite(&player_sprite, 100, 180, TILE_ATTR(PAL2, FALSE, FALSE, FALSE));
     PAL_setPalette(PAL2, player_sprite.palette->data, DMA);
 }
 
