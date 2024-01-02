@@ -1,4 +1,4 @@
-out/*
+./out/*
 *.o
 *.bin
-/out/*
+./out
