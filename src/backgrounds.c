@@ -38,7 +38,7 @@ void show_gameover_bg_b(void){
 }
 
 /*
-Show sega splash screen
+Show sega splash screen but in a fade in and out kinda of fashion
 */
 void show_sega_bg_b(void){
     JOY_init();
