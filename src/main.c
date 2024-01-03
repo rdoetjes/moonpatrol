@@ -30,8 +30,8 @@ static void gameover(){
     show_gameover_bg_b();
     SYS_doVBlankProcess();
     JOY_waitPress(JOY_1, BUTTON_START);
+    PAL_setPalette(PAL0, palette_black, DMA);
 }
-
 
 /*
 MAIN entry point of game

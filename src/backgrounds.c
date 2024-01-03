@@ -43,15 +43,12 @@ Show sega splash screen
 void show_sega_bg_b(void){
     JOY_init();
     u16 palette_full[64];
-    u16 palette_b[64];
     memcpy(&palette_full[0] , sega_bg_b.palette->data, 16 * 2);
-    //create an all black palette the palette_black is a const * u16 const or something that throws a warning.
-    memcpy(&palette_b[0] , 0, 64);
 
-    PAL_setPalette(PAL0, palette_b, DMA);	
+    PAL_setPalette(PAL0, palette_black, DMA);	
     PAL_fadeIn(0, 63, palette_full, 10, FALSE);
     load_vdp(PAL0, sega_bg_b.palette->data, 0, 0, BG_B, &sega_bg_b);
     JOY_waitPress(JOY_1, BUTTON_START);
     PAL_fadeOut(0, 63, 60, FALSE);
-    PAL_setPalette(PAL0, palette_b, DMA);	
+    PAL_setPalette(PAL0, palette_black, DMA);	
 }
