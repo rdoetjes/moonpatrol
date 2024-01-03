@@ -10,8 +10,8 @@ of doing those lines for every screen we want to load.
 inline static void load_vdp(u16 numPal, const u16* pal, int x, int y, VDPPlane plane, const Image *image){
     u16 idx = TILE_USER_INDEX;
     VDP_drawImageEx(plane, image, TILE_ATTR_FULL(PAL0, FALSE, FALSE, FALSE, idx), x, y, FALSE, TRUE);
-    idx += image->tileset->numTile;
     PAL_setPalette(numPal, image->palette->data, DMA);
+    idx += image->tileset->numTile;
 }
 
 /*
@@ -38,17 +38,26 @@ void show_gameover_bg_b(void){
 }
 
 /*
-Show sega splash screen
+Show sega splash screen but in a fade in and out kinda of fashion
 */
 void show_sega_bg_b(void){
     JOY_init();
+
+    // make a copy of the current pallete required for the fade in
     u16 palette_full[64];
     memcpy(&palette_full[0] , sega_bg_b.palette->data, 16 * 2);
 
+    //set palette to black so we fade from black to the palette_full
     PAL_setPalette(PAL0, palette_black, DMA);	
     PAL_fadeIn(0, 63, palette_full, 10, FALSE);
+    
+    // show the sega BG
     load_vdp(PAL0, sega_bg_b.palette->data, 0, 0, BG_B, &sega_bg_b);
+    
+    // Wait for start putton press and fade out
     JOY_waitPress(JOY_1, BUTTON_START);
     PAL_fadeOut(0, 63, 60, FALSE);
+
+    //set palette to black so that when the next screen is drawn we don't see old tiles or flicker
     PAL_setPalette(PAL0, palette_black, DMA);	
 }
