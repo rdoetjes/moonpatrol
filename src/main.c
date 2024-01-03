@@ -33,26 +33,12 @@ static void gameover(){
 }
 
 
-// static void sega(){
-//     JOY_init();
-//     u16 palette_full[64];
-//     u16 palette_b[64];
-//     memcpy(&palette_full [0] , sega_bg_a.palette->data, 16 * 2);
-//     memcpy(&palette_full [0] , 0, 64);
-
-//     PAL_setPalette(PAL1, palette_b, DMA);	
-//     PAL_fadeIn(0, 63, palette_full, 0, FALSE);
-//     show_sega_bg_a();
-//     JOY_waitPress(JOY_1, BUTTON_START);
-//     PAL_fadeOut(0, 63, 10, FALSE);
-// }
-
 /*
 MAIN entry point of game
 */
 int main()
 {   
-    //sega();
+    show_sega_bg_b();
     while(1)
     {
         setup(&p1);
