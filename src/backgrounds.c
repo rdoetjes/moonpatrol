@@ -9,10 +9,8 @@ of doing those lines for every screen we want to load.
 */
 inline static void load_vdp(u16 numPal, const u16* pal, int x, int y, VDPPlane plane, const Image *image){
     u16 idx = TILE_USER_INDEX;
+    PAL_setPalette(numPal, image->palette->data, DMA);
     VDP_drawImageEx(plane, image, TILE_ATTR_FULL(PAL0, FALSE, FALSE, FALSE, idx), x, y, FALSE, TRUE);
-    PAL_setPalette(numPal, image->palette->data, DMA);
-    idx += image->tileset->numTile;
-    PAL_setPalette(numPal, image->palette->data, DMA);
     idx += image->tileset->numTile;
 }
 
