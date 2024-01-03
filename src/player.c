@@ -24,10 +24,17 @@ void setup_player(Player *player, const u8 lives){
     SPR_setAnim(p1_sprite, 0);
 }
 
+/*
+Moves the player sprite on X and Y positio based on player struct
+*/
 void move_player(Player *player){
     SPR_setPosition(p1_sprite, player->x, player->y);
 }
 
+/*
+When the player jumps we move through 4 states each with different animation
+This function handles these states based op player->jumpFrame value
+*/
 void player_jump_state_handling(void){
     //tracks the amount of frame we are in the air
     //animation state is coupled to this.
