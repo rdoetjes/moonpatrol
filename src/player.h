@@ -20,3 +20,4 @@ typedef struct Player{
 
 void setup_player(Player *player, const u8 lives);
 void move_player(Player* player);
+void player_jump_state_handling(void);
