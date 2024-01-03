@@ -14,8 +14,8 @@ The rest of the Player struct is set with fixed values that work for the game.
 */
 void setup_player(Player *player, const u8 lives){
     player->lives = lives;    
-    player->x = 90;
-    player->y = 180;
+    player->x = PLAYER_START_X;
+    player->y = PLAYER_START_Y;
     player->jump_state = GROUND;
     player->jumpFrame = 0;
     player->score = 0;

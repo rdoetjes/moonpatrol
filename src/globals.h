@@ -8,6 +8,10 @@
 //320 is size of width 64 is the number of pixels in x position player sprite
 #define RIGHT_BOUNDERY_PLAYER 320-64
 
+// define player start position
+#define PLAYER_START_X 5
+#define PLAYER_START_Y 180
+
 //define the amount of frame for each jump animation
 #define JUMP_UP_NR_FAMES 10
 #define JUMP_HANG_NR_FAMES 40 + JUMP_UP_NR_FAMES
