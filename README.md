@@ -102,7 +102,7 @@ As you can see we have 4 states in our sprite sheet, they are all related to the
 We manage these states in our logic.c
 
 ```C
-static void jump_animation_handling(void){
+static void player_jump_state_handling(void){
     //tracks the amount of frame we are in the air
     //animation state is coupled to this.
     if (p1.jump_state!=GROUND){
@@ -159,7 +159,7 @@ void logic(){
     
     //only process jump animation when we are not on the ground
     if (p1.jump_state != GROUND){
-        jump_animation_handling();
+        player_jump_state_handling();
     }   
 
     // move the player based on the p1 structure
