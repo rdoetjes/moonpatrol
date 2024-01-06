@@ -5,5 +5,5 @@ PWD = $(shell pwd)
 all:
 	rm -rf out/*
 	docker run --rm -v $(PWD):/src sgdk
-blastem out/rom.bin
+	blastem out/rom.bin
 
