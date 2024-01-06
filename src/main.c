@@ -48,8 +48,8 @@ int main()
             logic();
             //draw all contents to screen
             draw();
-            //wait for vertical blank
-            SYS_doVBlankProcess();
+            // do all the processing.
+            SYS_doVBlankProcessEx(ON_VBLANK_START);
         } 
         // game over screen and wait for start button
         gameover();
