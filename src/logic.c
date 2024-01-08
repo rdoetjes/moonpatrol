@@ -1,7 +1,7 @@
 #include "logic.h"
 #include "globals.h"
 
-static u16 process_joy(){
+static u16 process_joy(void){
     u16 input = JOY_readJoypad(JOY_1);
     
     //move player left

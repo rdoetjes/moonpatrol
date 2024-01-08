@@ -11,7 +11,7 @@
 /*
 Draw everything
 */
-static void draw(){
+static void draw(void){
     char lives[12];
     VDP_setHorizontalScroll(BG_B, scroll_bg_b_offset);
     sprintf(lives, "LIVES: %d", p1.lives);
@@ -24,7 +24,7 @@ static void draw(){
 Remove all the sprites from the screen
 Show gameover screen and wait for start button to restart the game
 */
-static void gameover(){
+static void gameover(void){
    // when player dies we show game over screen and wait for start button.
     SPR_clear();
     show_gameover_bg_b();
